@@ -5,6 +5,8 @@ import ai.leverton.domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DiscussionService {
 
@@ -28,15 +30,18 @@ public class DiscussionService {
     }
 
     public void removeMsg(Discussion<Message> discussion, Message message) {
-            discussion.removeChild(message);
+        discussion.removeChild(message);
     }
 
-    public int getNumberSubEntries(Discussion<Message> discussion, int number){
+    public int getNumberSubEntries(Discussion<Message> discussion, int number) {
         number += discussion.getChildren().size();
-        for(Discussion<Message> disc : discussion.getChildren()){
-            getNumberSubEntries(disc, number);
+        return number + getNumberSubEntries(discussion.getChildren(), number);
+    }
+
+    public int getNumberSubEntries(List<Discussion<Message>> children, int number) {
+        for (Discussion<Message> dics : children) {
+            getNumberSubEntries(dics, number);
         }
         return number;
-
     }
 }
