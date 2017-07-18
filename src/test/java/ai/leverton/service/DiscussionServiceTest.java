@@ -61,8 +61,9 @@ public class DiscussionServiceTest extends BaseTest {
         discussion1.addChild(discussion2);
         discussion2.addChild(discussion3);
 
-        int children = discussionService.getNumberSubEntries(discussion1);
-        assertThat(children, is(2));
+        int amount = 0;
+        amount = discussionService.getNumberSubEntries(discussion1, amount);
+        assertThat(amount, is(2));
 
 
     }

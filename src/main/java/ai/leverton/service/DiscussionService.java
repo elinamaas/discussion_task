@@ -31,8 +31,12 @@ public class DiscussionService {
             discussion.removeChild(message);
     }
 
-    public int getNumberSubEntries(Discussion<Message> discussion){
-        return discussion.getChildren().size();
+    public int getNumberSubEntries(Discussion<Message> discussion, int number){
+        number += discussion.getChildren().size();
+        for(Discussion<Message> disc : discussion.getChildren()){
+            getNumberSubEntries(disc, number);
+        }
+        return number;
 
     }
 }

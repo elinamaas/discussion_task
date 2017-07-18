@@ -31,7 +31,8 @@ public class DiscussionApi {
     public ResponseEntity<Integer> startDiscussion(Discussion<Message> discussion) {
         final HttpHeaders headers = new HttpHeaders();
 
-        int childrenNumber = discussionService.getNumberSubEntries(discussion);
+        int childrenNumber = 0;
+        childrenNumber = discussionService.getNumberSubEntries(discussion, childrenNumber);
 
         return new ResponseEntity<>(childrenNumber, headers, HttpStatus.OK);
     }
