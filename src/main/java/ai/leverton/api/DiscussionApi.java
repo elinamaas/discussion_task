@@ -28,7 +28,7 @@ public class DiscussionApi {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<Integer> startDiscussion(Discussion<Message> discussion) {
+    public ResponseEntity<Integer> getNumberSubEntries(Discussion<Message> discussion) {
         final HttpHeaders headers = new HttpHeaders();
 
         int childrenNumber = 0;
